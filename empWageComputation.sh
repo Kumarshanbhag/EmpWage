@@ -10,15 +10,17 @@ function WageCalculation() {
 	echo "Daily Wage=$(($timeInHours * $WAGE_PER_HOUR))"
 }
 
-if [ $randomCheck -eq 0 ]
-then
-	echo "Employee is absent"
-	echo "Daily Wage=0"
-elif [ $randomCheck -eq 1 ]
-then
-	echo "Employee is Full Time"
-	WageCalculation $FULL_TIME_HOUR
-else
-	echo "Employee is Half Time"
-	WageCalculation $PART_TIME_HOUR
-fi
+case $randomCheck in
+	0)
+		echo "Employee is absent"
+		echo "Daily Wage=0"
+	;;
+	1)
+		echo "Employee is Full Time"
+		WageCalculation $FULL_TIME_HOUR
+	;;
+	2)
+		echo "Employee is Half Time"
+		WageCalculation $PART_TIME_HOUR
+	;;
+esac
