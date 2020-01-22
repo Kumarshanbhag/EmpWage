@@ -1,4 +1,5 @@
-#!/bin/bash -x
+#!/bin/bash 
+declare -A dailyWage
 echo "Welcome to employee wage"
 WAGE_PER_HOUR=20
 FULL_TIME_HOUR=8
@@ -12,7 +13,7 @@ function WageCalculation() {
    timeInHours=$1
    day=$2
    working_Hours=$(($working_Hours + $timeInHours))
-   dailyWage[$day]=$(($timeInHours * $WAGE_PER_HOUR))
+   dailyWage["Day:"$day]=$(($timeInHours * $WAGE_PER_HOUR))
    monthlyWage=$((${dailyWage[$day]} + $monthlyWage))
    echo "Working Hours=$working_Hours"
 }
@@ -45,7 +46,8 @@ do
       randomCheck=$((RANDOM%3))
       EmployeeAttendance $randomCheck
    fi
-   echo "Daily Wage=${dailyWage[$day]}"
-   ((day++))
+   echo "Daily Wage=${dailyWage["Day:"$day]}"
+	((day++))
 done
 echo "Monthly Wage=$monthlyWage"
+echo ${!dailyWage[@]} 
