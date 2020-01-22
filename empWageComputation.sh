@@ -6,16 +6,16 @@ PART_TIME_HOUR=4
 IS_ABSENT=0
 monthlyWage=0
 day=1
-workingHours=0
+working_Hours=0
 
 function WageCalculation() {
 	timeInHours=$1
-	workingHours=$(($workingHours + $timeInHours))
+	working_Hours=$(($working_Hours + $timeInHours))
 	dailyWage=$(($timeInHours * $WAGE_PER_HOUR))
 	monthlyWage=$(($timeInHours * $WAGE_PER_HOUR + $monthlyWage))
 	echo "Daily Wage=$dailyWage"
 	echo "Monthly Wage=$monthlyWage"
-	echo "Working Hours=$workingHours"
+	echo "Working Hours=$working_Hours"
 }
 
 function EmployeeAttendance() {
@@ -36,7 +36,7 @@ case $randomCheck in
 	esac
 }
 
-while [[ $day -le 20 && $workingHours -lt 100 ]]
+while [[ $day -le 20 && $working_Hours -lt 100 ]]
 do
 	if(($workingHours > 92))
 	then
