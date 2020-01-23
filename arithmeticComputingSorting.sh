@@ -1,4 +1,4 @@
-#!/bin/bash -x
+#!/bin/bash
 declare -A result
 echo "Welcome to Arithmetic Computing and Sorting"
 read -p "Enter 3 values to perform operation " a b c
@@ -18,36 +18,29 @@ echo "$a * $b + $c = ${arr[2]}"
 echo "$c + $a / $b = ${arr[3]}"
 echo "$a % $b + $c = ${arr[4]}"
 
+function Sort() {
+	compare=$1
+	for((i=1; i<=4; i++))
+	do
+		for((j=$i+1; j<=4; j++))
+		do
+			if((${arr[$i]} $compare ${arr[$j]}))
+			then
+				temp=${arr[$i]}
+				arr[$i]=${arr[$j]}
+				arr[$j]=$temp
+			fi
+		done
+	done
+}
+
 echo "Before sorting : "
 echo ${arr[@]}
-echo "After Descending sorting:"
-for((i=1; i<=4; i++))
-do
-	for((j=$i+1; j<=4; j++))
-	do
-		if((${arr[$i]} < ${arr[$j]}))
-		then
-			temp=${arr[$i]}
-			arr[$i]=${arr[$j]}
-			arr[$j]=$temp
-		fi
-	done
-done
 
+echo "After Descending sorting:"
+Sort '<'
 echo ${arr[@]}
 
 echo "After Ascending sorting:"
-for((i=1; i<=4; i++))
-do
-	for((j=$i+1; j<=4; j++))
-	do
-		if((${arr[$i]} > ${arr[$j]}))
-		then
-			temp=${arr[$i]}
-			arr[$i]=${arr[$j]}
-			arr[$j]=$temp
-		fi
-	done
-done
-
+Sort '>'
 echo ${arr[@]}
