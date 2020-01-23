@@ -13,9 +13,25 @@ for((i=1; i<=4; i++))
 do
 	arr[$i]=${result[Operation $i]}
 done
-
 echo "$a + $b * $c = ${arr[1]}"
 echo "$a * $b + $c = ${arr[2]}"
 echo "$c + $a / $b = ${arr[3]}"
 echo "$a % $b + $c = ${arr[4]}"
 
+echo "Before sorting : "
+echo ${arr[@]}
+echo "After Descending sorting:"
+for((i=1; i<=4; i++))
+do
+	for((j=$i+1; j<=4; j++))
+	do
+		if((${arr[$i]} < ${arr[$j]}))
+		then
+			temp=${arr[$i]}
+			arr[$i]=${arr[$j]}
+			arr[$j]=$temp
+		fi
+	done
+done
+
+echo ${arr[@]}
