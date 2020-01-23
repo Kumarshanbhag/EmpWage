@@ -35,3 +35,19 @@ do
 done
 
 echo ${arr[@]}
+
+echo "After Ascending sorting:"
+for((i=1; i<=4; i++))
+do
+	for((j=$i+1; j<=4; j++))
+	do
+		if((${arr[$i]} > ${arr[$j]}))
+		then
+			temp=${arr[$i]}
+			arr[$i]=${arr[$j]}
+			arr[$j]=$temp
+		fi
+	done
+done
+
+echo ${arr[@]}
