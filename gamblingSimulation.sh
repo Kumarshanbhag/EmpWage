@@ -1,17 +1,22 @@
-#!/bin/bash -x
+#!/bin/bash 
 echo "Welcome to Gambling Simulation"
+declare -A amount
+
 function Gamble(){
-while [[ $cash -lt $(($STAKE+$percent)) && $cash -gt $(($STAKE-$percent)) ]]
+for((i=1; i<=20; i++))
 do
-	if((RANDOM%2==0))
-	then
-		echo "Bet Won"
-		((cash++))
-	else
-		echo "Bet Lost"
-		((cash--))
-	fi
-	echo "Stake=$cash"
+	cash=$STAKE
+	while [[ $cash -lt $(($STAKE+$percent)) && $cash -gt $(($STAKE-$percent)) ]]
+	do
+		if((RANDOM%2==0))
+		then
+			((cash++))
+		else
+			((cash--))
+		fi
+	done
+	amount[Day$i]=$(($STAKE-$cash))
+	echo "Amount on Day$i = ${amount[Day$i]}"
 done
 }
 
@@ -22,7 +27,4 @@ Gamble
 
 STAKE=100
 BET=1
-cash=$STAKE
 PercentageLimit
-
-
