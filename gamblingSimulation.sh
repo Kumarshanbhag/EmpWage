@@ -16,7 +16,17 @@ do
 		fi
 	done
 	amount[Day$i]=$(($STAKE-$cash))
-	echo "Amount on Day$i = ${amount[Day$i]}"
+done
+TotalAmount
+}
+
+function TotalAmount {
+amount[Day0]=0
+for ((i=1; i<=20; i++))
+do
+ 		j=$i
+	amount[Day$j]=$(( ${amount[Day$j]} + ${amount[Day$((j-1))]} ))
+	echo "Amount on Day$i = ${amount[Day$j]}"
 done
 }
 
@@ -28,3 +38,5 @@ Gamble
 STAKE=100
 BET=1
 PercentageLimit
+
+
