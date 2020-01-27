@@ -57,3 +57,9 @@ echo "Lucky Day is $day And Amount won is $compare"
 LuckyAndUnlucky '>' ${amount[Day1]}
 echo "Unlucky Day is $day And Amount won is $compare"
 
+while((${amount[Day20]} >= 0 ))
+do
+	echo "Playing Next Month"
+	Gamble
+done
+echo "Wont Play Next Month"
