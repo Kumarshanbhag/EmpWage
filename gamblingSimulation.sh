@@ -15,9 +15,9 @@ do
 			((cash--))
 		fi
 	done
-	amount[Day$i]=$(($STAKE-$cash))
+	amount[Day$i]=$(($cash-$STAKE))
 done
-TotalAmount
+TotalAmount 
 }
 
 function TotalAmount {
@@ -30,6 +30,19 @@ do
 done
 }
 
+function LuckyAndUnlucky {
+compare=$2
+day=0
+for ((i=2; i<=20; i++))
+do
+ 	if((compare $1= ${amount[Day$i]}))	
+	then
+		day=$i
+		compare=${amount[Day$i]}
+	fi
+done
+}
+
 function PercentageLimit(){
 percent=$(($STAKE*50/100));
 Gamble
@@ -39,4 +52,8 @@ STAKE=100
 BET=1
 PercentageLimit
 
+LuckyAndUnlucky '<' ${amount[Day1]}
+echo "Lucky Day is $day And Amount won is $compare"
+LuckyAndUnlucky '>' ${amount[Day1]}
+echo "Unlucky Day is $day And Amount won is $compare"
 
