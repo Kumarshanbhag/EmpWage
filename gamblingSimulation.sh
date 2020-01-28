@@ -28,11 +28,14 @@ do
 	amount[Day$j]=$(( ${amount[Day$j]} + ${amount[Day$((j-1))]} ))
 	echo "Amount on Day$i = ${amount[Day$j]}"
 done
+LuckyAndUnlucky '<' ${amount[Day1]}
+echo "Lucky Day is $day And Amount won is $compare"
+LuckyAndUnlucky '>' ${amount[Day1]}
+echo "Unlucky Day is $day And Amount won is $compare"
 }
 
 function LuckyAndUnlucky {
 compare=$2
-day=0
 for ((i=2; i<=20; i++))
 do
  	if((compare $1= ${amount[Day$i]}))	
@@ -51,11 +54,6 @@ Gamble
 STAKE=100
 BET=1
 PercentageLimit
-
-LuckyAndUnlucky '<' ${amount[Day1]}
-echo "Lucky Day is $day And Amount won is $compare"
-LuckyAndUnlucky '>' ${amount[Day1]}
-echo "Unlucky Day is $day And Amount won is $compare"
 
 while((${amount[Day20]} >= 0 ))
 do
